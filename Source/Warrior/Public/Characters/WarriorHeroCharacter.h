@@ -21,6 +21,9 @@ class WARRIOR_API AWarriorHeroCharacter : public AWarriorBaseCharacter
 public: 
 	AWarriorHeroCharacter();
 protected:
+	//~ Begin APawn interface
+	virtual void PossessedBy(AController* NewController) override;
+	//~ End APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	virtual void BeginPlay() override;
 private:
