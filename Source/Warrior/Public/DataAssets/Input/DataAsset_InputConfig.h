@@ -19,7 +19,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (Categories = "InputTag"))
 	FGameplayTag InputTag;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-		UInputAction* InputAction;
+	UInputAction* InputAction;
+
+	bool IsValid() const
+	{
+		return  InputTag.IsValid() && InputAction;
+	}
 };
 
 /**
@@ -32,10 +37,13 @@ class WARRIOR_API UDataAsset_InputConfig : public UDataAsset
 
 public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-		UInputMappingContext* DefaultMappingContext;
+	UInputMappingContext* DefaultMappingContext;
 
-		UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (TitleProperty = "InputTag"))
-		TArray<FWarriorInputActionConfig> NativeInputActions;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (TitleProperty = "InputTag"))
+	TArray<FWarriorInputActionConfig> NativeInputActions;
 
-		UInputAction* FindNativeInputActionByTag(const FGameplayTag& InInputTag) const;
+	UInputAction* FindNativeInputActionByTag(const FGameplayTag& InInputTag) const;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (TitleProperty = "InputTag"))
+	TArray<FWarriorInputActionConfig> AbilityInputActions;
 };
